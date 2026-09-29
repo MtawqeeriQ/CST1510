@@ -21,9 +21,9 @@ Delete these instructions as you replace them with your code.
 #
 #    Remember: input() always gives back text.
 
-label = ""      # : replace with an input() call
-first = 0.0     # : replace with an input() call, converted
-second = 0.0    # : replace with an input() call, converted
+label = input("Hostname: ")   # : replace with an input() call
+first = float(input("First value: "))     # : replace with an input() call, converted
+second = float(input("Second value: "))    # : replace with an input() call, converted
 
 
 # ================================================================== PROCESS
@@ -34,7 +34,7 @@ second = 0.0    # : replace with an input() call, converted
 #
 #    Do not type the answers. Calculate them.
 
-difference = 0.0   # 
+differece = 0.0  # 
 percent = 0.0      # 
 
 
@@ -53,7 +53,8 @@ print("=" * 34)
 print(f"  RECORD CHECK  -  {label}")
 print("=" * 34)
 
-# : your report lines go here
+print(f"  Used        : {first:g}")
+print(f"  Total       : {second:g}")       # : your report lines go here
 
 print("=" * 34)
 
