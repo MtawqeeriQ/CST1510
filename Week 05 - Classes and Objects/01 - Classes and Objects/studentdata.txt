@@ -1,0 +1,4 @@
+Ali, AI&DS,85
+Aarez, AI&DS,67
+Ahmed, Meds,90
+Ayaan, BBA, 50
