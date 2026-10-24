@@ -2,8 +2,12 @@
 # Run it, read the last line, then fix it.
 
 class Record:
-    def status(percent):    # this parameter should be self
-        return percent
+    def __init__(self, value):
+        self.value = value
 
-r = Record()
-print(r.status(95))
+    def status(self):
+        return self.value
+
+r = Record(95)
+
+print(r.status())

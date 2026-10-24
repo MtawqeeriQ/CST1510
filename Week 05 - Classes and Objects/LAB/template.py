@@ -3,7 +3,7 @@ RECORD CHECK  -  my version
 ===========================
 
 Name  :
-Lane  :  AI / Cyber / IT      (delete two)
+Lane  :  AI / Data Science
 Date  :
 
 Run it:   python template.py
@@ -20,10 +20,46 @@ Delete these instructions as you replace them with your code.
 #    Typical   : add a method status(self) that returns "OVER LIMIT" (100%+),
 #                "WARNING" (90%+) or "OK", worked out from self.value and
 #                self.limit. Give it a one-line docstring.
-#    Excellent : also add over_limit_count as a class-level running total -
-#                see the note below.
+#    Excellent : not in this lane.
 
 # your class goes here
+
+
+class Record:
+    """A monitored record with a label, current value and upper limit."""
+
+    over_limit_count = 0
+
+    def __init__(self, label, value, limit):
+        """Store the label, value and limit on the new record."""
+        self.label = label
+        self.value = value
+        self.limit = limit
+
+    def status(self):
+        """Return OVER LIMIT, WARNING or OK based on how close value is to limit."""
+        percent = (self.value / self.limit) * 100
+        if percent >= 100:
+            type(self).over_limit_count += 1
+            return "OVER LIMIT"
+        elif percent >= 90:
+            return "WARNING"
+        else:
+            return "OK"
+
+    def is_over(self):
+        """Return True when value is at or above 100% of the limit."""
+        return (self.value / self.limit) * 100 >= 100
+
+
+def load_records(path):
+    """Read label,value,limit lines from a file and return a list of Records."""
+    records = []
+    with open(path) as f:
+        for line in f:
+            label, value, limit = line.strip().split(",")
+            records.append(Record(label, float(value), float(limit)))
+    return records
 
 
 # ==================================================================== RECORDS
@@ -31,11 +67,13 @@ Delete these instructions as you replace them with your code.
 #
 #    Threshold : create at least 2 Record instances directly in the code.
 #    Typical   : same, but now print each one's .status() as well.
-#    Excellent : instead, write load_records(path) that reads label,value,limit
-#                lines from a file and returns a list of Record objects. Make
-#                your own data file, one record per line.
+#    Excellent : not in this lane.
 
-records = []   # replace with your code
+records = [
+    Record("R-001", 87.0, 100.0),
+    Record("R-002", 120.0, 100.0),
+    Record("R-003", 45.0, 100.0),
+]
 
 
 # ==================================================================== OUTPUT
@@ -43,21 +81,12 @@ records = []   # replace with your code
 #
 #    Threshold : label, value, limit, inside a border.
 #    Typical   : add the result of .status().
-#    Excellent : also keep a running count of how many came back OVER LIMIT
-#                across every record, and print that once, after the loop.
-#                (Simplest: a plain variable outside the loop, same pattern
-#                as Week 4. If you want it to live ON the object instead,
-#                that is a stretch worth trying - but a variable is enough.)
+#    Excellent : not in this lane.
+#    Your final line should look like: 1 of 3 records are OVER LIMIT
 
 for record in records:
-    print()
-    print("=" * 34)
-    print(f"  RECORD CHECK  -  {record.label}")
-    print("=" * 34)
-
-    # your report lines go here
-
-    print("=" * 34)
+    print(record.label, record.status())
+print(f"{Record.over_limit_count} of {len(records)} records are OVER LIMIT")
 
 
 # ==========================================================================
@@ -67,3 +96,4 @@ for record in records:
 #    [ ] Check every method only reads/changes its OWN object (self) -
 #        nothing reaches outside itself
 #    [ ] Check every method and __init__ has a one-line docstring
+
