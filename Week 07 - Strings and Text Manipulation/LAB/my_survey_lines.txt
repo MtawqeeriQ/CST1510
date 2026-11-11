@@ -1,0 +1,6 @@
+  Survey_2026 , id=101 , rating=4 , age=23  
+SURVEY_2026,ID=102,RATING=2,AGE=31
+  survey_2026 , id = 103 , rating = 5 ,  age = 19
+Survey_2026 , id=104 , RATING=1 , age=45 
+   survey_2026,id=105,rating=3,age=28
+SURVEY_2026 , id=106 , rating=4 , age=52  
